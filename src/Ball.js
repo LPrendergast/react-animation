@@ -10,16 +10,17 @@ const BallComponent = styled.View`
 `;
 
 export const Ball = () => {
+  const position = new Animated.ValueXY(0, 0);
+
   useEffect(() => {
-    const position = new Animated.ValueXY(0, 0);
     Animated.spring(position, {
       toValue: { x: 200, y: 500 },
-      useNativeDriver: true,
+      useNativeDriver: false,
     }).start();
   });
 
   return (
-    <Animated.View>
+    <Animated.View style={position.getLayout()}>
       <BallComponent />
     </Animated.View>
   );
